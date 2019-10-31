@@ -4,4 +4,4 @@ from .models import Animal
 class AnimalForm(forms.ModelForm):
     class Meta:
         model = Animal
-        fields = ["latinName"]
+        fields = ["latinName", "reptiletype", "image", "cites", "habitat", "feeding", "enclosure", "temperature", "sex", "male", "female", "breeding", "incubation"]

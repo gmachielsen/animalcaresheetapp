@@ -20,7 +20,7 @@ def add_animal(request):
         if form.is_valid():
             form.save()
             messages.success(request, ("animalcaresheet successfully added"))
-            return redirect('posts_form')
+            return redirect('add_animal')
 
         else:
             messages.error(request, ("animalcaresheet is NOT been added, please try again"))

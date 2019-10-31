@@ -3,5 +3,9 @@
 {% block content %}
 
 <h1>Posts Form</h1>
-{{ form }}
+<form method="POST" enctype="multipart/form-data">
+       {% csrf_token %}
+       {{ form }}
+       <button type="submit" class="btn btn-info">Save</button>
+</form>
 {% endblock %}
