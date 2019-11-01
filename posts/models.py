@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Animal(models.Model):
     # ANIMALS = (
@@ -7,7 +8,7 @@ class Animal(models.Model):
     #     (REPTILES(), 'Reptiles'),
     # )
     REPTILES = (
-        ('X', 'choose type of reptile: crocodile, lizard, snake, turtle'),
+        ('X', 'Choose type of reptile'),
         ('C', 'Crocodile'),
         ('L', 'Lizard'),
         ('S', 'Snake'),
@@ -36,16 +37,15 @@ class Animal(models.Model):
     female = models.ImageField(blank=True, null=True, upload_to="images")
     breeding = models.TextField(blank=True, null=True, max_length= 500)
     incubation = models.TextField(blank=True, null=True, max_length= 500)
-    created_date = models.DateTimeField(auto_now_add=True, null=True)
-    published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
-    views = models.IntegerField(default=0)
-
-
-
-
-
-
+    author = models.ForeignKey(User, related_name='posts', null=False, default=1, on_delete=models.SET_DEFAULT) 
+    # created_date = models.DateTimeField(auto_now_add=True, null=True)
+    # published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    # views = models.IntegerField(default=0)
 
 
     def __str__(self):
         return self.latinName
+
+class AnimalImages(models.Model):
+    animalpictures = models.ForeignKey(Animal, related_name="images", on_delete=models.CASCADE)
+    image = models.ImageField()
